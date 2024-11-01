@@ -19,8 +19,7 @@ Documentation for the Ollama Self Learning Project
 🚀 Journey as the guide, mapped to various environments
 
 ### Key References:
-- `/workspaces/PrometheusAsDataSource/Journey/02_journeycodespaces.md`
-- `/workspaces/PrometheusAsDataSource/FormulaMarkdown/10_practicalgitcommits.md`
+- 
 
 git pull; git add . && git commit -m "Codespace cloud commit" && git push;clear.exe 
 git pull; git add . && git commit -m "Local Workstation commit" && git push;clear.exe 
