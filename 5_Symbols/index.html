@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Symbols — Code | Ollama Self-Learning</title>
+  <link rel="stylesheet" href="../nav.css">
+  <!-- PrismJS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+  <style>
+    .symbol-section { margin-bottom: 32px; }
+    .symbol-section h3 { font-size: 16px; font-weight: 600; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; color: var(--text); }
+    .symbol-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 16px; }
+    .symbol-table th { background: var(--surface2); color: var(--text-muted); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .5px; padding: 8px 12px; border: 1px solid var(--border); text-align: left; }
+    .symbol-table td { padding: 8px 12px; border: 1px solid var(--border); vertical-align: top; }
+    .symbol-table tr:hover td { background: var(--surface2); }
+    .symbol-table code { background: var(--surface2); border: 1px solid var(--border); border-radius: 3px; padding: 2px 5px; font-size: .88em; color: var(--accent); }
+  </style>
+</head>
+<body>
+
+<nav id="main-nav" data-root=".."></nav>
+
+<main>
+  <div class="breadcrumb">
+    <a href="../index.html">🏠 Home</a>
+    <span class="breadcrumb-sep">/</span>
+    <span>🔣 Symbols</span>
+  </div>
+
+  <div class="section-header">
+    <span class="section-emoji">🔣</span>
+    <div>
+      <div class="section-title">Symbols</div>
+      <div class="section-subtitle">Stage 5 — The Reality · Core source code and implementation reference</div>
+    </div>
+  </div>
+
+  <div class="flex gap-2 wrap mb-4">
+    <span class="tag">Stage 5</span>
+    <span class="tag tag-blue">PrismJS</span>
+    <span class="tag tag-green">Code Reference</span>
+    <a href="../markdown_renderer.html?file=5_Symbols/readme.md" class="tag">📝 Readme</a>
+  </div>
+
+  <!-- API Calls -->
+  <div class="section-header mt-8">
+    <span class="section-emoji">🔌</span>
+    <div><div class="section-title">Ollama API Examples</div><div class="section-subtitle">Core implementation patterns</div></div>
+  </div>
+
+  <div class="symbol-section">
+    <h3>💬 Chat Completions</h3>
+    <pre><code class="language-bash"># Streaming chat with llama3.2
+curl http://localhost:11434/api/chat \
+  -d '{
+    "model": "llama3.2",
+    "messages": [
+      {"role": "user", "content": "Why is the sky blue?"}
+    ]
+  }'</code></pre>
+  </div>
+
+  <div class="symbol-section">
+    <h3>📄 Text Generation</h3>
+    <pre><code class="language-bash"># Generate with a prompt
+curl http://localhost:11434/api/generate \
+  -d '{
+    "model": "llama3.2",
+    "prompt": "Write a haiku about local AI",
+    "stream": false
+  }'</code></pre>
+  </div>
+
+  <div class="symbol-section">
+    <h3>🧠 Embeddings for Qdrant</h3>
+    <pre><code class="language-python">import ollama
+import qdrant_client
+from qdrant_client.models import PointStruct, VectorParams, Distance
+
+# Connect to Qdrant
+client = qdrant_client.QdrantClient("http://localhost:6333")
+
+# Create collection (4096 dims for nomic-embed-text)
+client.create_collection(
+    collection_name="ollama_notes",
+    vectors_config=VectorParams(size=4096, distance=Distance.COSINE),
+)
+
+# Generate embedding with Ollama
+response = ollama.embeddings(
+    model="nomic-embed-text",
+    prompt="Ollama makes local LLM deployment easy"
+)
+
+# Store in Qdrant
+client.upsert(
+    collection_name="ollama_notes",
+    points=[
+        PointStruct(
+            id=1,
+            vector=response["embedding"],
+            payload={"text": "Ollama makes local LLM deployment easy"}
+        )
+    ]
+)</code></pre>
+  </div>
+
+  <div class="symbol-section">
+    <h3>🔍 Semantic Search</h3>
+    <pre><code class="language-python">import ollama
+import qdrant_client
+
+client = qdrant_client.QdrantClient("http://localhost:6333")
+
+query = "How to deploy local LLMs?"
+embedding = ollama.embeddings(model="nomic-embed-text", prompt=query)
+
+results = client.search(
+    collection_name="ollama_notes",
+    query_vector=embedding["embedding"],
+    limit=5
+)
+
+for r in results:
+    print(f"Score: {r.score:.3f} | {r.payload['text']}")</code></pre>
+  </div>
+
+  <!-- Symbol Reference Tables -->
+  <div class="section-header mt-8">
+    <span class="section-emoji">📖</span>
+    <div><div class="section-title">Symbol Reference</div><div class="section-subtitle">Key symbols used throughout the codebase</div></div>
+  </div>
+
+  <div class="symbol-section">
+    <h3>🖥️ CLI Symbols</h3>
+    <table class="symbol-table">
+      <tr><th>Symbol</th><th>Meaning</th><th>Example</th></tr>
+      <tr><td><code>$</code></td><td>Command prompt</td><td><code>$ ollama serve</code></td></tr>
+      <tr><td><code>|</code></td><td>Pipe operator</td><td><code>curl ... | sh</code></td></tr>
+      <tr><td><code>-d</code></td><td>Data flag (curl)</td><td><code>curl -d '{"model":"..."}'</code></td></tr>
+      <tr><td><code>--</code></td><td>Long-form option</td><td><code>ollama --version</code></td></tr>
+    </table>
+  </div>
+
+  <div class="symbol-section">
+    <h3>🌐 API Symbols</h3>
+    <table class="symbol-table">
+      <tr><th>Method</th><th>Endpoint</th><th>Use</th></tr>
+      <tr><td><code>POST</code></td><td><code>/api/generate</code></td><td>Text generation</td></tr>
+      <tr><td><code>POST</code></td><td><code>/api/chat</code></td><td>Chat completions</td></tr>
+      <tr><td><code>POST</code></td><td><code>/api/embeddings</code></td><td>Vector embeddings</td></tr>
+      <tr><td><code>GET</code></td><td><code>/api/tags</code></td><td>List local models</td></tr>
+      <tr><td><code>DELETE</code></td><td><code>/api/delete</code></td><td>Remove a model</td></tr>
+    </table>
+  </div>
+
+  <div class="card mt-8" style="border-left:4px solid var(--green)">
+    <div class="flex items-center gap-3">
+      <span style="font-size:24px">🧪</span>
+      <div>
+        <div class="card-title">Testing Checklist</div>
+        <div class="card-desc">Verify code examples run correctly.</div>
+      </div>
+      <a href="../markdown_renderer.html?file=5_Symbols/testing_checklist.md" class="card-link" style="margin-left:auto">View →</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>Stage 5 — Symbols · <a href="../index.html">← Back to Home</a></p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+<script src="../nav.js"></script>
+</body>
+</html>

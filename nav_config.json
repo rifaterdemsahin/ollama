@@ -1,0 +1,41 @@
+{
+  "site": {
+    "title": "Ollama Self-Learning",
+    "tagline": "Master Local LLM Deployment",
+    "repo": "https://github.com/rifaterdemsahin/ollama"
+  },
+  "debugMenu": [
+    { "label": "1 Real Unknown", "emoji": "🌍", "path": "1_Real_Unknown/okr.md", "description": "OKRs and problem definitions" },
+    { "label": "2 Environment",  "emoji": "🌳", "path": "2_Environment/readme.md", "description": "Setup guides and roadmap" },
+    { "label": "3 Simulation",   "emoji": "🌌", "path": "3_Simulation/readme.md", "description": "UI mockups and vision" },
+    { "label": "4 Formula",      "emoji": "📐", "path": "4_Formula/install.md", "description": "Step-by-step recipes" },
+    { "label": "5 Symbols",      "emoji": "🔣", "path": "5_Symbols/readme.md", "description": "Source code and implementation" },
+    { "label": "6 Semblance",    "emoji": "🌀", "path": "6_Semblance/readme.md", "description": "Errors and workarounds" },
+    { "label": "7 Testing",      "emoji": "🧪", "path": "7_Testing_Known/readme.md", "description": "Validation and proof" }
+  ],
+  "contentMenu": [
+    { "label": "Home",         "emoji": "🏠", "path": "index.html",               "description": "Project overview and welcome" },
+    { "label": "Real Unknown", "emoji": "🌍", "path": "1_Real_Unknown/index.html", "description": "OKRs, problem definitions, core questions" },
+    { "label": "Environment",  "emoji": "🌳", "path": "2_Environment/index.html",  "description": "Setup guides, constraints, AI client config" },
+    { "label": "Simulation",   "emoji": "🌌", "path": "3_Simulation/index.html",   "description": "Vision, UI mockups, image carousel" },
+    { "label": "Formula",      "emoji": "📐", "path": "4_Formula/index.html",      "description": "Step-by-step guides, research notes, logic" },
+    { "label": "Symbols",      "emoji": "🔣", "path": "5_Symbols/index.html",      "description": "Core source code, PrismJS highlighting" },
+    { "label": "Semblance",    "emoji": "🌀", "path": "6_Semblance/index.html",    "description": "Error logs, near-misses, workarounds" },
+    { "label": "Testing",      "emoji": "🧪", "path": "7_Testing_Known/index.html","description": "Validation, checklists, proof of concept" }
+  ],
+  "social": [
+    { "label": "GitHub",   "url": "https://github.com/rifaterdemsahin/ollama",        "icon": "⬛", "title": "GitHub Repository" },
+    { "label": "LinkedIn", "url": "https://www.linkedin.com/in/rifaterdemsahin",      "icon": "🔗", "title": "LinkedIn — rifaterdemsahin" },
+    { "label": "YouTube",  "url": "https://www.youtube.com/@RifatErdemSahin",         "icon": "📺", "title": "YouTube — @RifatErdemSahin" }
+  ],
+  "searchExtra": [
+    { "label": "Install Ollama",        "emoji": "📐", "path": "4_Formula/index.html",      "description": "Installation guide for macOS, Linux, Windows" },
+    { "label": "Prerequisites",         "emoji": "📐", "path": "4_Formula/index.html",      "description": "System requirements and dependencies" },
+    { "label": "Features",              "emoji": "📐", "path": "4_Formula/index.html",      "description": "Ollama features overview" },
+    { "label": "Error Logs",            "emoji": "🌀", "path": "6_Semblance/index.html",    "description": "Documented errors and solutions" },
+    { "label": "Qdrant Setup",          "emoji": "🌳", "path": "2_Environment/index.html",  "description": "Vector database containerized setup" },
+    { "label": "nomic-embed-text",      "emoji": "🌳", "path": "2_Environment/index.html",  "description": "Embedding model with 4096 dimensions" },
+    { "label": "Testing Checklist",     "emoji": "🧪", "path": "7_Testing_Known/index.html","description": "Validation against OKR objectives" },
+    { "label": "Markdown Renderer",     "emoji": "📝", "path": "markdown_renderer.html",    "description": "View markdown files with syntax highlighting" }
+  ]
+}

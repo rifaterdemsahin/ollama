@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Testing Known — Proof | Ollama Self-Learning</title>
+  <link rel="stylesheet" href="../nav.css">
+  <style>
+    .validation-block { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px; margin-bottom: 16px; }
+    .validation-block.passed { border-left: 4px solid var(--green); }
+    .validation-block.pending { border-left: 4px solid var(--yellow); }
+    .validation-title { font-size: 15px; font-weight: 600; margin-bottom: 10px; }
+    .val-check { display: flex; gap: 10px; align-items: flex-start; padding: 6px 0; font-size: 14px; border-bottom: 1px solid var(--border); }
+    .val-check:last-child { border-bottom: none; }
+    .val-icon { flex-shrink: 0; font-size: 16px; }
+    .proof-table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 16px 0; }
+    .proof-table th { background: var(--surface2); padding: 10px 14px; text-align: left; border: 1px solid var(--border); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .5px; color: var(--text-muted); }
+    .proof-table td { padding: 10px 14px; border: 1px solid var(--border); }
+    .proof-table tr:hover td { background: var(--surface2); }
+    .progress-bar { height: 6px; background: var(--surface2); border-radius: 3px; overflow: hidden; margin-top: 6px; }
+    .progress-fill { height: 100%; background: var(--green); border-radius: 3px; transition: width .4s ease; }
+  </style>
+</head>
+<body>
+
+<nav id="main-nav" data-root=".."></nav>
+
+<main>
+  <div class="breadcrumb">
+    <a href="../index.html">🏠 Home</a>
+    <span class="breadcrumb-sep">/</span>
+    <span>🧪 Testing Known</span>
+  </div>
+
+  <div class="section-header">
+    <span class="section-emoji">🧪</span>
+    <div>
+      <div class="section-title">Testing Known</div>
+      <div class="section-subtitle">Stage 7 — The Proof · Validation against Stage 1 objectives</div>
+    </div>
+  </div>
+
+  <div class="flex gap-2 wrap mb-4">
+    <span class="tag">Stage 7</span>
+    <span class="tag tag-green">Final Proof</span>
+    <a href="../markdown_renderer.html?file=7_Testing_Known/readme.md" class="tag">📝 Readme</a>
+  </div>
+
+  <p style="color:var(--text-muted); max-width:680px; margin-bottom:28px;">
+    This final stage validates every objective from Stage 1 (Real Unknown) with concrete, tested evidence.
+    The journey is complete when all OKRs are validated here.
+  </p>
+
+  <!-- OKR Validation -->
+  <div class="section-header mt-8">
+    <span class="section-emoji">🎯</span>
+    <div><div class="section-title">OKR Validation</div><div class="section-subtitle">Mapping outcomes back to Stage 1 objectives</div></div>
+  </div>
+
+  <div class="validation-block pending">
+    <div class="validation-title">🎯 Objective 1: Master Local LLM Deployment</div>
+    <div class="progress-bar"><div class="progress-fill" style="width:40%"></div></div>
+    <p class="text-sm text-muted" style="margin:6px 0 12px">40% complete</p>
+    <div class="val-check"><span class="val-icon">🔲</span><span>KR1: Installed on all 3 platforms (Linux, macOS, Windows)</span></div>
+    <div class="val-check"><span class="val-icon">🔲</span><span>KR2: At least 3 different models deployed and tested</span></div>
+    <div class="val-check"><span class="val-icon">🔲</span><span>KR3: Stable performance confirmed with 8GB+ RAM utilization</span></div>
+  </div>
+
+  <div class="validation-block pending">
+    <div class="validation-title">🛠 Objective 2: Develop Practical Applications</div>
+    <div class="progress-bar"><div class="progress-fill" style="width:20%"></div></div>
+    <p class="text-sm text-muted" style="margin:6px 0 12px">20% complete</p>
+    <div class="val-check"><span class="val-icon">🔲</span><span>KR1: 5 working Ollama API examples created</span></div>
+    <div class="val-check"><span class="val-icon">🔲</span><span>KR2: Custom model integration project implemented</span></div>
+    <div class="val-check"><span class="val-icon">🔲</span><span>KR3: All implementations have comprehensive documentation</span></div>
+  </div>
+
+  <div class="validation-block pending">
+    <div class="validation-title">⚡ Objective 3: Optimize Performance &amp; Resources</div>
+    <div class="progress-bar"><div class="progress-fill" style="width:10%"></div></div>
+    <p class="text-sm text-muted" style="margin:6px 0 12px">10% complete</p>
+    <div class="val-check"><span class="val-icon">🔲</span><span>KR1: Model loading time reduced by 25% vs baseline</span></div>
+    <div class="val-check"><span class="val-icon">🔲</span><span>KR2: Efficient memory management practices documented</span></div>
+    <div class="val-check"><span class="val-icon">🔲</span><span>KR3: Response time under 2 seconds for standard queries</span></div>
+  </div>
+
+  <!-- Evidence Table -->
+  <div class="section-header mt-8">
+    <span class="section-emoji">📊</span>
+    <div><div class="section-title">Evidence &amp; Metrics</div></div>
+  </div>
+
+  <table class="proof-table">
+    <thead>
+      <tr>
+        <th>Metric</th><th>Target</th><th>Measured</th><th>Evidence</th><th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Platforms supported</td><td>3</td><td>—</td><td>—</td><td>🔲 Pending</td></tr>
+      <tr><td>Models deployed</td><td>≥ 3</td><td>—</td><td>—</td><td>🔲 Pending</td></tr>
+      <tr><td>RAM utilization</td><td>≥ 8 GB stable</td><td>—</td><td>—</td><td>🔲 Pending</td></tr>
+      <tr><td>API examples</td><td>5</td><td>—</td><td>—</td><td>🔲 Pending</td></tr>
+      <tr><td>Load time improvement</td><td>-25%</td><td>—</td><td>—</td><td>🔲 Pending</td></tr>
+      <tr><td>Response time</td><td>&lt; 2s</td><td>—</td><td>—</td><td>🔲 Pending</td></tr>
+      <tr><td>Qdrant search accuracy</td><td>High relevance</td><td>—</td><td>—</td><td>🔲 Pending</td></tr>
+    </tbody>
+  </table>
+
+  <!-- Stage-by-Stage Validation -->
+  <div class="section-header mt-8">
+    <span class="section-emoji">🗺️</span>
+    <div><div class="section-title">Journey Completion Checklist</div><div class="section-subtitle">All stages signed off</div></div>
+  </div>
+  <div class="card-grid">
+    <a href="../1_Real_Unknown/testing_checklist.md" class="card section-card" style="text-decoration:none;color:inherit">
+      <span class="card-emoji">🌍</span><div class="card-title">Stage 1 Checklist</div><div class="card-desc">OKRs defined and validated</div><span class="card-link">View →</span>
+    </a>
+    <a href="../2_Environment/testing_checklist.md" class="card section-card" style="text-decoration:none;color:inherit">
+      <span class="card-emoji">🌳</span><div class="card-title">Stage 2 Checklist</div><div class="card-desc">Environment fully configured</div><span class="card-link">View →</span>
+    </a>
+    <a href="../3_Simulation/testing_checklist.md" class="card section-card" style="text-decoration:none;color:inherit">
+      <span class="card-emoji">🌌</span><div class="card-title">Stage 3 Checklist</div><div class="card-desc">Vision assets complete</div><span class="card-link">View →</span>
+    </a>
+    <a href="../4_Formula/testing_checklist.md" class="card section-card" style="text-decoration:none;color:inherit">
+      <span class="card-emoji">📐</span><div class="card-title">Stage 4 Checklist</div><div class="card-desc">All guides verified</div><span class="card-link">View →</span>
+    </a>
+    <a href="../5_Symbols/testing_checklist.md" class="card section-card" style="text-decoration:none;color:inherit">
+      <span class="card-emoji">🔣</span><div class="card-title">Stage 5 Checklist</div><div class="card-desc">Code examples tested</div><span class="card-link">View →</span>
+    </a>
+    <a href="../6_Semblance/testing_checklist.md" class="card section-card" style="text-decoration:none;color:inherit">
+      <span class="card-emoji">🌀</span><div class="card-title">Stage 6 Checklist</div><div class="card-desc">All errors documented</div><span class="card-link">View →</span>
+    </a>
+  </div>
+
+  <div class="card mt-8" style="border-left:4px solid var(--green)">
+    <div class="flex items-center gap-3">
+      <span style="font-size:24px">🧪</span>
+      <div>
+        <div class="card-title">Final Testing Checklist</div>
+        <div class="card-desc">The final checklist for Stage 7 completion.</div>
+      </div>
+      <a href="../markdown_renderer.html?file=7_Testing_Known/testing_checklist.md" class="card-link" style="margin-left:auto">View →</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>Stage 7 — Testing Known · <a href="../index.html">← Back to Home</a></p>
+</footer>
+
+<script src="../nav.js"></script>
+</body>
+</html>

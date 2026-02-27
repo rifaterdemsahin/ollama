@@ -1,25 +1,71 @@
-Documentation for the Ollama Self Learning Project
-| Section             | Description                                                                                                               | Stakeholders                        |
-|---------------------|---------------------------------------------------------------------------------------------------------------------------|-------------------------------------|
-| **🚀 Journey**      | *Visual Story Explained with Steps* - A self-learning guide from beginner to skilled in visual storytelling.              | Begüm Çetin, Visual Designers, Educators         |
-| **🌍 Real**         | *The Job That Starts with Objective and Key Results* - Sets goals and objectives, aligning tasks with measurable results. | Büşra Selin Pekiççi, Project Managers, Team Leads        |
-| **🌳 Environments** | *The Roadmap and Use Cases* - A roadmap with learning modules and real-world use cases to apply new skills.            | Begüm Çetin, buğra şentürk, Developers, Product Managers        |
-| **🌌 Imaginary**    | *What You Learn on the Road* - Tracks concepts, theories, and skills acquired, promoting continuous growth.            | Cansu Yılmaz, Learners, Mentors                   |
-| **📐 Formulas**     | *The Guides That Are Mentioned* - Essential guides and formulas for understanding and solving project challenges.     | emre okul, Analysts, Engineers                 |
-| **🔣 Symbols**      | *Code That Is Implemented* - Includes code snippets and examples to demonstrate each concept practically.              | Begüm Çetin, Cansu Yılmaz, Software Developers, QA Testers     |
-| **🌀 Semblance**    | *Errors Found in the Process* - Documents mistakes and solutions, making errors valuable learning opportunities.       | All Team Members, Quality Assurance, Nihat Ezer, Nihat Ezer2 |
+# 🦙 Ollama Self-Learning System
 
-# 📚 Documentation Guide
+> **Master Local LLM Deployment with Ollama** — A structured 7-stage journey from **Unknown** to **Proven**.
 
-- 📂 **Index at the beginning of the files**
-- 📝 **Document as you progress**
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-green)](https://rifaterdemsahin.github.io/ollama/)
 
-🌍 Real => 🌳 Environments => 🌌 Imaginary => 📐 Formulas => 🔣 Symbols => 🌀 Semblance
+## 🗺️ The 7-Stage Journey
 
-🚀 Journey as the guide, mapped to various environments
+| Stage | Folder | The Role | Description |
+|-------|--------|----------|-------------|
+| 1 | `1_Real_Unknown` | 🌍 The Why | OKRs, problem definitions, core questions |
+| 2 | `2_Environment` | 🌳 The Context | Setup guides, Ollama + Qdrant config |
+| 3 | `3_Simulation` | 🌌 The Vision | UI mockups, image carousel |
+| 4 | `4_Formula` | 📐 The Recipe | Step-by-step guides, install docs |
+| 5 | `5_Symbols` | 🔣 The Reality | Source code, API examples, PrismJS |
+| 6 | `6_Semblance` | 🌀 The Scars | Error logs, near-misses, workarounds |
+| 7 | `7_Testing_Known` | 🧪 The Proof | Validation against OKRs, checklists |
 
-### Key References:
-- 
+**Flow:** 🌍 Real Unknown → 🌳 Environment → 🌌 Simulation → 📐 Formula → 🔣 Symbols → 🌀 Semblance → 🧪 Testing Known
 
-git pull; git add . && git commit -m "Codespace cloud commit" && git push;clear.exe 
-git pull; git add . && git commit -m "Local Workstation commit" && git push;clear.exe 
+## 🤖 AI Stack
+
+- **Ollama** — Local LLM inference (`http://localhost:11434`)
+- **Qdrant** — Vector database with `nomic-embed-text` (4096 dims)
+- **Models**: `llama3.2`, `nomic-embed-text`, + others
+
+## 🚀 Quick Start
+
+```bash
+# 1. Clone
+git clone https://github.com/rifaterdemsahin/ollama.git
+cd ollama
+
+# 2. Open in browser (static site, no server needed)
+open index.html
+# or visit: https://rifaterdemsahin.github.io/ollama/
+
+# 3. Install Ollama (macOS)
+brew install ollama
+ollama serve
+
+# 4. Pull models
+ollama pull llama3.2
+ollama pull nomic-embed-text
+```
+
+## 📐 Root Files
+
+| File | Purpose |
+|------|---------|
+| `index.html` | Main entry point |
+| `markdown_renderer.html` | View any `.md` file |
+| `nav.js` | Shared navigation component |
+| `nav.css` | Shared styles |
+| `nav_config.json` | Navigation and search config |
+| `aigent.md` | AI agent rules |
+| `claude.md` | Claude persona rules |
+| `.env` | Environment variable template |
+| `.github/workflows/pages.yml` | GitHub Pages CI/CD |
+
+## 🔗 Connect
+
+- ⬛ [GitHub](https://github.com/rifaterdemsahin/ollama)
+- 🔗 [LinkedIn — rifaterdemsahin](https://www.linkedin.com/in/rifaterdemsahin)
+- 📺 [YouTube — @RifatErdemSahin](https://www.youtube.com/@RifatErdemSahin)
+
+## 🔄 Git Workflow
+
+```bash
+git pull; git add . && git commit -m "describe change" && git push
+```

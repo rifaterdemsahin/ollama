@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formula — Guides | Ollama Self-Learning</title>
+  <link rel="stylesheet" href="../nav.css">
+  <style>
+    .guide-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
+    .guide-card:hover { border-color: var(--accent); }
+    .guide-meta { flex: 1; }
+    .guide-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+    .guide-desc  { font-size: 13px; color: var(--text-muted); }
+    .guide-actions { display: flex; flex-direction: column; gap: 6px; align-items: flex-end; flex-shrink: 0; }
+    .step-list { counter-reset: step; list-style: none; padding: 0; }
+    .step-item { counter-increment: step; display: flex; gap: 12px; margin-bottom: 12px; }
+    .step-num { width: 28px; height: 28px; background: var(--accent); color: #000; font-size: 12px; font-weight: 700; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .step-num::before { content: counter(step); }
+    .step-content { flex: 1; }
+    .step-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+    .step-desc { font-size: 13px; color: var(--text-muted); }
+    .code-block { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 14px; font-family: 'JetBrains Mono','Fira Code',monospace; font-size: 12px; color: #a9dc76; overflow-x: auto; margin-top: 8px; }
+    .code-comment { color: var(--text-muted); }
+  </style>
+</head>
+<body>
+
+<nav id="main-nav" data-root=".."></nav>
+
+<main>
+  <div class="breadcrumb">
+    <a href="../index.html">🏠 Home</a>
+    <span class="breadcrumb-sep">/</span>
+    <span>📐 Formula</span>
+  </div>
+
+  <div class="section-header">
+    <span class="section-emoji">📐</span>
+    <div>
+      <div class="section-title">Formula</div>
+      <div class="section-subtitle">Stage 4 — The Recipe · Step-by-step guides and implementation logic</div>
+    </div>
+  </div>
+
+  <div class="flex gap-2 wrap mb-4">
+    <span class="tag tag-blue">Stage 4</span>
+    <span class="tag tag-green">3 Guides</span>
+    <a href="../markdown_renderer.html?file=4_Formula/install.md" class="tag">📝 Install Guide</a>
+    <a href="../markdown_renderer.html?file=4_Formula/prerequisites.md" class="tag">📝 Prerequisites</a>
+    <a href="../markdown_renderer.html?file=4_Formula/features.md" class="tag">📝 Features</a>
+  </div>
+
+  <!-- Guide Index -->
+  <div class="section-header mt-8">
+    <span class="section-emoji">📚</span>
+    <div><div class="section-title">Guides</div><div class="section-subtitle">All formula documents</div></div>
+  </div>
+
+  <div class="guide-card">
+    <div class="guide-meta">
+      <div class="guide-title">🛠 Installation Guide</div>
+      <div class="guide-desc">Install Ollama on macOS, Linux, and Windows. Covers Homebrew, curl installer, and manual setup.</div>
+      <div class="flex gap-2 wrap mt-4">
+        <span class="tag tag-green">macOS</span><span class="tag">Linux</span><span class="tag">Windows</span>
+      </div>
+    </div>
+    <div class="guide-actions">
+      <a href="../markdown_renderer.html?file=4_Formula/install.md" class="card-link">View MD →</a>
+    </div>
+  </div>
+
+  <div class="guide-card">
+    <div class="guide-meta">
+      <div class="guide-title">📋 Prerequisites</div>
+      <div class="guide-desc">System requirements, RAM/disk minimums, macOS version, and tools needed before installation.</div>
+    </div>
+    <div class="guide-actions">
+      <a href="../markdown_renderer.html?file=4_Formula/prerequisites.md" class="card-link">View MD →</a>
+    </div>
+  </div>
+
+  <div class="guide-card">
+    <div class="guide-meta">
+      <div class="guide-title">✨ Features</div>
+      <div class="guide-desc">Complete overview of Ollama's capabilities, API, model management, and integration options.</div>
+    </div>
+    <div class="guide-actions">
+      <a href="../markdown_renderer.html?file=4_Formula/features.md" class="card-link">View MD →</a>
+    </div>
+  </div>
+
+  <!-- Quick Start -->
+  <div class="section-header mt-8">
+    <span class="section-emoji">⚡</span>
+    <div><div class="section-title">Quick Start</div><div class="section-subtitle">MacBook step-by-step guide</div></div>
+  </div>
+
+  <ul class="step-list">
+    <li class="step-item">
+      <div class="step-num"></div>
+      <div class="step-content">
+        <div class="step-title">Install Ollama</div>
+        <div class="step-desc">Download and install via Homebrew or curl installer</div>
+        <div class="code-block"><span class="code-comment"># via Homebrew</span>
+brew install ollama
+<span class="code-comment"># or via curl</span>
+curl -fsSL https://ollama.com/install.sh | sh</div>
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-num"></div>
+      <div class="step-content">
+        <div class="step-title">Verify Installation</div>
+        <div class="step-desc">Confirm Ollama is installed and check the version</div>
+        <div class="code-block">ollama --version</div>
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-num"></div>
+      <div class="step-content">
+        <div class="step-title">Start Ollama Service</div>
+        <div class="step-desc">Launch the local inference server on port 11434</div>
+        <div class="code-block">ollama serve</div>
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-num"></div>
+      <div class="step-content">
+        <div class="step-title">Pull a Model</div>
+        <div class="step-desc">Download a language model (new terminal window)</div>
+        <div class="code-block">ollama pull llama3.2
+ollama pull nomic-embed-text  <span class="code-comment"># for embeddings</span></div>
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-num"></div>
+      <div class="step-content">
+        <div class="step-title">Test the Installation</div>
+        <div class="step-desc">Run a test inference to confirm everything works</div>
+        <div class="code-block">ollama run llama3.2 "Hello, how are you?"</div>
+      </div>
+    </li>
+  </ul>
+
+  <!-- Troubleshooting -->
+  <div class="section-header mt-8">
+    <span class="section-emoji">🐛</span>
+    <div><div class="section-title">Common Issues</div></div>
+  </div>
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-title">Port 11434 in use</div>
+      <div class="card-desc">Another process is using port 11434. Run <code>lsof -i :11434</code> to find and kill it before starting Ollama.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Permission denied</div>
+      <div class="card-desc">Use <code>sudo</code> for the installation command, or ensure your user has the necessary permissions.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Not enough RAM</div>
+      <div class="card-desc">Minimum 8GB required. Use smaller models like <code>phi3</code> or <code>mistral</code> on memory-constrained systems.</div>
+    </div>
+  </div>
+
+  <div class="card mt-8" style="border-left:4px solid var(--green)">
+    <div class="flex items-center gap-3">
+      <span style="font-size:24px">🧪</span>
+      <div>
+        <div class="card-title">Testing Checklist</div>
+        <div class="card-desc">Verify all guide steps have been tested.</div>
+      </div>
+      <a href="../markdown_renderer.html?file=4_Formula/testing_checklist.md" class="card-link" style="margin-left:auto">View →</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>Stage 4 — Formula · <a href="../index.html">← Back to Home</a></p>
+</footer>
+
+<script src="../nav.js"></script>
+</body>
+</html>

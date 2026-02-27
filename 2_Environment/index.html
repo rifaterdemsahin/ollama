@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Environment — Setup | Ollama Self-Learning</title>
+  <link rel="stylesheet" href="../nav.css">
+  <style>
+    .platform-tab { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 20px; }
+    .platform-btn { padding: 7px 16px; font-size: 13px; font-weight: 500; border: 1px solid var(--border); border-radius: var(--radius); cursor: pointer; background: var(--surface2); color: var(--text-muted); transition: 150ms ease; }
+    .platform-btn.active, .platform-btn:hover { background: var(--accent); color: #000; border-color: var(--accent); }
+    .platform-panel { display: none; }
+    .platform-panel.active { display: block; }
+    .code-block { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; font-family: 'JetBrains Mono','Fira Code',monospace; font-size: 13px; color: #a9dc76; margin: 12px 0; overflow-x: auto; position: relative; }
+    .code-block .comment { color: var(--text-muted); }
+    .copy-code { position: absolute; top: 8px; right: 8px; background: var(--surface); border: 1px solid var(--border); color: var(--text-muted); font-size: 11px; padding: 3px 8px; border-radius: 4px; cursor: pointer; }
+    .copy-code:hover { color: var(--text); }
+    .req-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin: 16px 0; }
+    .req-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 14px; }
+    .req-label { font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 4px; }
+    .req-value { font-size: 14px; font-weight: 500; }
+  </style>
+</head>
+<body>
+
+<nav id="main-nav" data-root=".."></nav>
+
+<main>
+  <div class="breadcrumb">
+    <a href="../index.html">🏠 Home</a>
+    <span class="breadcrumb-sep">/</span>
+    <span>🌳 Environment</span>
+  </div>
+
+  <div class="section-header">
+    <span class="section-emoji">🌳</span>
+    <div>
+      <div class="section-title">Environment</div>
+      <div class="section-subtitle">Stage 2 — The Context · Setup guides, constraints, and AI stack configuration</div>
+    </div>
+  </div>
+
+  <div class="flex gap-2 wrap mb-4">
+    <span class="tag tag-green">Stage 2</span>
+    <span class="tag tag-blue">Multi-Platform</span>
+    <span class="tag tag-blue">Containerized</span>
+    <a href="../markdown_renderer.html?file=2_Environment/readme.md" class="tag">📝 View Readme</a>
+  </div>
+
+  <!-- System Requirements -->
+  <div class="section-header mt-8">
+    <span class="section-emoji">💻</span>
+    <div><div class="section-title">System Requirements</div></div>
+  </div>
+  <div class="req-grid">
+    <div class="req-item"><div class="req-label">RAM (Min)</div><div class="req-value">8 GB</div></div>
+    <div class="req-item"><div class="req-label">RAM (Recommended)</div><div class="req-value">16 GB</div></div>
+    <div class="req-item"><div class="req-label">Disk Space</div><div class="req-value">10 GB free</div></div>
+    <div class="req-item"><div class="req-label">macOS</div><div class="req-value">12.0+</div></div>
+    <div class="req-item"><div class="req-label">GPU (Optional)</div><div class="req-value">NVIDIA / Apple M-series</div></div>
+    <div class="req-item"><div class="req-label">Docker</div><div class="req-value">Required for Qdrant</div></div>
+  </div>
+
+  <!-- Platform Tabs -->
+  <div class="section-header mt-8">
+    <span class="section-emoji">🖥️</span>
+    <div><div class="section-title">Ollama Installation</div><div class="section-subtitle">Select your platform</div></div>
+  </div>
+
+  <div class="platform-tab">
+    <button class="platform-btn active" onclick="showPlatform('mac')">🍎 macOS</button>
+    <button class="platform-btn" onclick="showPlatform('linux')">🐧 Linux</button>
+    <button class="platform-btn" onclick="showPlatform('win')">🪟 Windows</button>
+  </div>
+
+  <div id="panel-mac" class="platform-panel active">
+    <div class="code-block"><span class="comment"># macOS — via Homebrew</span>
+brew install ollama
+
+<span class="comment"># Or via curl installer</span>
+curl -fsSL https://ollama.com/install.sh | sh
+
+<span class="comment"># Start Ollama service</span>
+ollama serve
+
+<span class="comment"># Pull a model</span>
+ollama pull llama3.2</div>
+  </div>
+
+  <div id="panel-linux" class="platform-panel">
+    <div class="code-block"><span class="comment"># Linux — one-line installer</span>
+curl -fsSL https://ollama.com/install.sh | sh
+
+<span class="comment"># Start as systemd service</span>
+sudo systemctl enable ollama
+sudo systemctl start ollama
+
+<span class="comment"># Pull a model</span>
+ollama pull llama3.2</div>
+  </div>
+
+  <div id="panel-win" class="platform-panel">
+    <div class="code-block"><span class="comment"># Windows — download from:</span>
+<span class="comment"># https://ollama.com/download/windows</span>
+<span class="comment"># Then run the .exe installer</span>
+
+<span class="comment"># Or via winget:</span>
+winget install ollama
+
+<span class="comment"># Pull a model</span>
+ollama pull llama3.2</div>
+  </div>
+
+  <!-- AI Stack: Qdrant -->
+  <div class="section-header mt-8">
+    <span class="section-emoji">🗄️</span>
+    <div><div class="section-title">Qdrant Vector Database</div><div class="section-subtitle">Containerized setup with Docker</div></div>
+  </div>
+  <div class="code-block"><span class="comment"># Pull and run Qdrant container</span>
+docker pull qdrant/qdrant
+
+docker run -d \
+  --name qdrant \
+  -p 6333:6333 \
+  -p 6334:6334 \
+  -v $(pwd)/qdrant_storage:/qdrant/storage \
+  qdrant/qdrant
+
+<span class="comment"># Qdrant UI available at http://localhost:6333/dashboard</span></div>
+
+  <div class="section-header mt-8">
+    <span class="section-emoji">🧠</span>
+    <div><div class="section-title">nomic-embed-text Setup</div><div class="section-subtitle">4096-dimension embedding model</div></div>
+  </div>
+  <div class="code-block"><span class="comment"># Pull embedding model via Ollama</span>
+ollama pull nomic-embed-text
+
+<span class="comment"># Generate embeddings (4096 dimensions)</span>
+curl http://localhost:11434/api/embeddings \
+  -d '{"model": "nomic-embed-text", "prompt": "Your text here"}'</div>
+
+  <!-- AI Clients -->
+  <div class="section-header mt-8">
+    <span class="section-emoji">🤖</span>
+    <div><div class="section-title">AI Client Configuration</div></div>
+  </div>
+  <div class="card-grid">
+    <div class="card">
+      <span class="card-emoji">🦙</span>
+      <div class="card-title">Ollama</div>
+      <div class="card-desc">Default endpoint: <code>http://localhost:11434</code>. Configure models via <code>ollama pull &lt;model&gt;</code>.</div>
+    </div>
+    <div class="card">
+      <span class="card-emoji">🤖</span>
+      <div class="card-title">Claude (AI)</div>
+      <div class="card-desc">Used for local AI tasks like populating Qdrant and generating Obsidian shortcut titles. See <code>claude.md</code> for persona rules.</div>
+    </div>
+  </div>
+
+  <div class="card mt-8" style="border-left:4px solid var(--green)">
+    <div class="flex items-center gap-3">
+      <span style="font-size:24px">🧪</span>
+      <div>
+        <div class="card-title">Testing Checklist</div>
+        <div class="card-desc">Verify the environment is correctly set up.</div>
+      </div>
+      <a href="../markdown_renderer.html?file=2_Environment/testing_checklist.md" class="card-link" style="margin-left:auto">View →</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>Stage 2 — Environment · <a href="../index.html">← Back to Home</a></p>
+</footer>
+
+<script src="../nav.js"></script>
+<script>
+function showPlatform(p) {
+  document.querySelectorAll('.platform-panel').forEach(function(el){ el.classList.remove('active'); });
+  document.querySelectorAll('.platform-btn').forEach(function(el){ el.classList.remove('active'); });
+  document.getElementById('panel-' + p).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>

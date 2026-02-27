@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Semblance — Errors | Ollama Self-Learning</title>
+  <link rel="stylesheet" href="../nav.css">
+  <style>
+    .error-card { background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--red); border-radius: var(--radius); padding: 16px 20px; margin-bottom: 14px; }
+    .error-card.warning { border-left-color: var(--yellow); }
+    .error-card.resolved { border-left-color: var(--green); opacity: .85; }
+    .error-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; gap: 12px; }
+    .error-title { font-size: 14px; font-weight: 600; color: var(--text); }
+    .error-body { font-size: 13px; color: var(--text-muted); margin-bottom: 10px; }
+    .error-fix { font-size: 13px; background: var(--surface2); border-radius: var(--radius); padding: 10px 14px; border: 1px solid var(--border); }
+    .error-fix strong { color: var(--green); }
+    .near-miss { background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--yellow); border-radius: var(--radius); padding: 16px 20px; margin-bottom: 14px; }
+    .scar-quote { background: rgba(248,81,73,.05); border: 1px solid rgba(248,81,73,.2); border-radius: var(--radius); padding: 16px 20px; font-style: italic; color: var(--text-muted); margin: 20px 0; font-size: 14px; }
+    code.inline { background: var(--surface2); border: 1px solid var(--border); border-radius: 3px; padding: 2px 6px; font-size: .88em; color: var(--red); }
+  </style>
+</head>
+<body>
+
+<nav id="main-nav" data-root=".."></nav>
+
+<main>
+  <div class="breadcrumb">
+    <a href="../index.html">🏠 Home</a>
+    <span class="breadcrumb-sep">/</span>
+    <span>🌀 Semblance</span>
+  </div>
+
+  <div class="section-header">
+    <span class="section-emoji">🌀</span>
+    <div>
+      <div class="section-title">Semblance</div>
+      <div class="section-subtitle">Stage 6 — The Scars · Error logs, near-misses, and workarounds</div>
+    </div>
+  </div>
+
+  <div class="flex gap-2 wrap mb-4">
+    <span class="tag">Stage 6</span>
+    <span class="tag tag-red">Error Logs</span>
+    <a href="../markdown_renderer.html?file=6_Semblance/readme.md" class="tag">📝 Error Readme</a>
+    <a href="../markdown_renderer.html?file=6_Semblance/only-linux-install.md" class="tag">📝 Linux Script Error</a>
+  </div>
+
+  <div class="scar-quote">
+    "The gap between what was planned and what actually happened is where the real learning lives." 🌀
+  </div>
+
+  <!-- Real Errors from Logs -->
+  <div class="section-header mt-8">
+    <span class="section-emoji">🐛</span>
+    <div><div class="section-title">Documented Errors</div><div class="section-subtitle">Real errors encountered during this journey</div></div>
+  </div>
+
+  <div class="error-card resolved">
+    <div class="error-header">
+      <div class="error-title">❌ Linux-only install script run on macOS</div>
+      <span class="tag tag-green">Resolved ✓</span>
+    </div>
+    <div class="error-body">
+      Ran <code class="inline">curl https://ollama.ai/install.sh | sh</code> on macOS — got
+      <code class="inline">ERROR This script is intended to run on Linux only.</code>
+    </div>
+    <div class="error-fix"><strong>Fix:</strong> On macOS use <code>brew install ollama</code> or download from <a href="https://ollama.com" target="_blank" rel="noopener" style="color:var(--accent)">ollama.com</a>. The curl installer is Linux-only.</div>
+  </div>
+
+  <div class="error-card">
+    <div class="error-header">
+      <div class="error-title">❌ "Model requires more system memory" in Docker</div>
+      <span class="tag tag-red">Known Issue</span>
+    </div>
+    <div class="error-body">Running large models inside Docker containers fails if container memory limits are lower than the model requires.</div>
+    <div class="error-fix"><strong>Fix:</strong> Increase Docker memory limits to 8GB+ in Docker Desktop → Settings → Resources → Memory.</div>
+  </div>
+
+  <div class="error-card">
+    <div class="error-header">
+      <div class="error-title">❌ CUDA OOM errors with vision models</div>
+      <span class="tag tag-red">Known Issue</span>
+    </div>
+    <div class="error-body">GPU runs out of VRAM when loading vision-capable models (llava, bakllava) alongside other processes.</div>
+    <div class="error-fix"><strong>Fix:</strong> Close GPU-heavy applications before running vision models. Use <code>nvidia-smi</code> to monitor VRAM usage.</div>
+  </div>
+
+  <div class="error-card">
+    <div class="error-header">
+      <div class="error-title">❌ <code class="inline">unsafe.Slice: ptr is nil and len is not zero</code></div>
+      <span class="tag tag-yellow">Intermittent</span>
+    </div>
+    <div class="error-body">Runtime panic from unsafe pointer arithmetic, typically with multiple concurrent model requests.</div>
+    <div class="error-fix"><strong>Workaround:</strong> Serialize requests — avoid sending multiple API calls simultaneously to the same model.</div>
+  </div>
+
+  <div class="error-card">
+    <div class="error-header">
+      <div class="error-title">❌ Port 11434 already in use</div>
+      <span class="tag tag-green">Resolved ✓</span>
+    </div>
+    <div class="error-body">Running <code class="inline">ollama serve</code> fails with address already in use error.</div>
+    <div class="error-fix"><strong>Fix:</strong> Run <code>lsof -i :11434 | grep LISTEN</code> then kill the conflicting process with <code>kill -9 &lt;PID&gt;</code>.</div>
+  </div>
+
+  <!-- Near Misses -->
+  <div class="section-header mt-8">
+    <span class="section-emoji">⚠️</span>
+    <div><div class="section-title">Near Misses</div><div class="section-subtitle">Things that almost went wrong</div></div>
+  </div>
+
+  <div class="near-miss">
+    <div class="error-title">⚠️ Wrong URL for install script</div>
+    <div class="error-body" style="margin:8px 0">Used <code class="inline">ollama.ai</code> (old domain) instead of <code class="inline">ollama.com</code>. The old domain may redirect but the paths have changed.</div>
+    <div class="error-fix"><strong>Lesson:</strong> Always use <a href="https://ollama.com" target="_blank" rel="noopener" style="color:var(--accent)">ollama.com</a> as the canonical source.</div>
+  </div>
+
+  <div class="near-miss">
+    <div class="error-title">⚠️ Qdrant collection dimension mismatch</div>
+    <div class="error-body" style="margin:8px 0">Created Qdrant collection with 768 dimensions (nomic default) but nomic-embed-text produces 4096-dim vectors via Ollama.</div>
+    <div class="error-fix"><strong>Lesson:</strong> Always verify embedding dimensions: <code>ollama embeddings nomic-embed-text "test"</code> and check array length.</div>
+  </div>
+
+  <!-- Gap Analysis -->
+  <div class="section-header mt-8">
+    <span class="section-emoji">🔍</span>
+    <div><div class="section-title">Plan vs Reality</div></div>
+  </div>
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-title">📐 Planned</div>
+      <div class="card-desc">Simple curl install script works on all platforms with one command.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">🌀 Reality</div>
+      <div class="card-desc">Different installation methods required per platform. macOS needs Homebrew or .dmg, Linux uses curl, Windows uses .exe.</div>
+    </div>
+  </div>
+
+  <div class="card mt-8" style="border-left:4px solid var(--green)">
+    <div class="flex items-center gap-3">
+      <span style="font-size:24px">🧪</span>
+      <div>
+        <div class="card-title">Testing Checklist</div>
+        <div class="card-desc">Verify all known errors are documented and resolved.</div>
+      </div>
+      <a href="../markdown_renderer.html?file=6_Semblance/testing_checklist.md" class="card-link" style="margin-left:auto">View →</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>Stage 6 — Semblance · <a href="../index.html">← Back to Home</a></p>
+</footer>
+
+<script src="../nav.js"></script>
+</body>
+</html>

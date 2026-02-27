@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulation — Vision | Ollama Self-Learning</title>
+  <link rel="stylesheet" href="../nav.css">
+  <style>
+    .add-image-note {
+      background: rgba(88,166,255,.05);
+      border: 1px dashed rgba(88,166,255,.3);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+    .add-image-note code {
+      background: var(--surface2);
+      padding: 2px 6px;
+      border-radius: 3px;
+      color: var(--accent);
+    }
+    .vision-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; margin: 20px 0; }
+    .vision-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px; text-align: center; }
+    .vision-card .big-emoji { font-size: 48px; margin-bottom: 12px; display: block; }
+    .vision-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+    .vision-card p { font-size: 13px; color: var(--text-muted); }
+  </style>
+</head>
+<body>
+
+<nav id="main-nav" data-root=".."></nav>
+
+<main>
+  <div class="breadcrumb">
+    <a href="../index.html">🏠 Home</a>
+    <span class="breadcrumb-sep">/</span>
+    <span>🌌 Simulation</span>
+  </div>
+
+  <div class="section-header">
+    <span class="section-emoji">🌌</span>
+    <div>
+      <div class="section-title">Simulation</div>
+      <div class="section-subtitle">Stage 3 — The Vision · UI mockups, concepts, and image carousel</div>
+    </div>
+  </div>
+
+  <div class="flex gap-2 wrap mb-4">
+    <span class="tag">Stage 3</span>
+    <span class="tag tag-purple">Vision</span>
+    <a href="../markdown_renderer.html?file=3_Simulation/readme.md" class="tag">📝 Readme</a>
+  </div>
+
+  <!-- IMAGE CAROUSEL -->
+  <div class="section-header mt-8">
+    <span class="section-emoji">🖼️</span>
+    <div>
+      <div class="section-title">Project Vision Carousel</div>
+      <div class="section-subtitle">Visual journey of what we're building</div>
+    </div>
+  </div>
+
+  <div class="add-image-note">
+    💡 To add images to this carousel, place image files in <code>3_Simulation/images/</code> and update <code>3_Simulation/images.json</code>.
+    The carousel updates automatically from the manifest.
+  </div>
+
+  <div class="carousel-wrap" id="carousel">
+    <div class="carousel-track" id="carousel-track"></div>
+    <button class="carousel-btn carousel-prev" id="carousel-prev">‹</button>
+    <button class="carousel-btn carousel-next" id="carousel-next">›</button>
+  </div>
+  <div class="carousel-dots" id="carousel-dots"></div>
+
+  <!-- VISION CONCEPTS -->
+  <div class="section-header mt-8">
+    <span class="section-emoji">💡</span>
+    <div>
+      <div class="section-title">Vision Concepts</div>
+      <div class="section-subtitle">What the final system looks like</div>
+    </div>
+  </div>
+  <div class="vision-grid">
+    <div class="vision-card">
+      <span class="big-emoji">🦙</span>
+      <h3>Local LLM Hub</h3>
+      <p>A single terminal interface to switch between models, chat, and generate embeddings — no internet required.</p>
+    </div>
+    <div class="vision-card">
+      <span class="big-emoji">🗄️</span>
+      <h3>Semantic Memory</h3>
+      <p>Qdrant-powered vector search for your knowledge base, powered by nomic-embed-text embeddings.</p>
+    </div>
+    <div class="vision-card">
+      <span class="big-emoji">📓</span>
+      <h3>Obsidian Integration</h3>
+      <p>Auto-generate titles and tags for Obsidian notes using local Ollama inference — no API costs.</p>
+    </div>
+    <div class="vision-card">
+      <span class="big-emoji">🔌</span>
+      <h3>API-First</h3>
+      <p>Every model accessible via a REST API compatible with OpenAI clients — drop-in local replacement.</p>
+    </div>
+  </div>
+
+  <div class="card mt-8" style="border-left:4px solid var(--green)">
+    <div class="flex items-center gap-3">
+      <span style="font-size:24px">🧪</span>
+      <div>
+        <div class="card-title">Testing Checklist</div>
+        <div class="card-desc">Verify simulation and vision assets are complete.</div>
+      </div>
+      <a href="../markdown_renderer.html?file=3_Simulation/testing_checklist.md" class="card-link" style="margin-left:auto">View →</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>Stage 3 — Simulation · <a href="../index.html">← Back to Home</a></p>
+</footer>
+
+<script src="../nav.js"></script>
+<script>
+(function() {
+  var track  = document.getElementById('carousel-track');
+  var dots   = document.getElementById('carousel-dots');
+  var prevBtn = document.getElementById('carousel-prev');
+  var nextBtn = document.getElementById('carousel-next');
+  var current = 0;
+  var slides = [];
+  var autoTimer;
+
+  // Load images from manifest
+  fetch('../3_Simulation/images.json')
+    .then(function(r) { return r.json(); })
+    .then(function(data) { buildCarousel(data.images || []); })
+    .catch(function() { buildCarousel([]); });
+
+  function buildCarousel(images) {
+    if (!images.length) {
+      // Placeholder slides when no images
+      images = [
+        { src: null, title: '🦙 Local LLM Hub', desc: 'Add images to 3_Simulation/images/ to populate this carousel.' },
+        { src: null, title: '🗄️ Qdrant Vector DB', desc: 'Semantic search powered by nomic-embed-text (4096 dims).' },
+        { src: null, title: '📐 The Formula', desc: 'Step-by-step recipes from installation to production.' }
+      ];
+    }
+
+    slides = images;
+    track.innerHTML = '';
+    dots.innerHTML = '';
+
+    images.forEach(function(img, i) {
+      var slide = document.createElement('div');
+      slide.className = 'carousel-slide';
+      if (img.src) {
+        slide.innerHTML = '<img src="../3_Simulation/images/' + img.src + '" alt="' + (img.title || '') + '">';
+      } else {
+        slide.innerHTML = '<div class="slide-placeholder"><div style="font-size:40px;margin-bottom:12px">' + (img.title || '🌌') + '</div><p>' + (img.desc || '') + '</p></div>';
+      }
+      track.appendChild(slide);
+
+      var dot = document.createElement('button');
+      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+      dot.addEventListener('click', function() { goTo(i); });
+      dots.appendChild(dot);
+    });
+
+    goTo(0);
+    startAuto();
+  }
+
+  function goTo(n) {
+    current = (n + slides.length) % slides.length;
+    track.style.transform = 'translateX(-' + (current * 100) + '%)';
+    document.querySelectorAll('.carousel-dot').forEach(function(d, i) {
+      d.classList.toggle('active', i === current);
+    });
+  }
+
+  function startAuto() {
+    clearInterval(autoTimer);
+    autoTimer = setInterval(function() { goTo(current + 1); }, 4000);
+  }
+
+  prevBtn.addEventListener('click', function() { goTo(current - 1); startAuto(); });
+  nextBtn.addEventListener('click', function() { goTo(current + 1); startAuto(); });
+})();
+</script>
+</body>
+</html>

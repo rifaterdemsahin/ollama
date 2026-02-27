@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real Unknown — OKRs | Ollama Self-Learning</title>
+  <link rel="stylesheet" href="../nav.css">
+  <style>
+    .okr-block { background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--accent); border-radius: var(--radius); padding: 20px 24px; margin-bottom: 20px; }
+    .okr-objective { font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+    .okr-kr-list { list-style: none; padding: 0; }
+    .okr-kr-item { display: flex; align-items: flex-start; gap: 10px; padding: 6px 0; font-size: 14px; border-bottom: 1px solid var(--border); }
+    .okr-kr-item:last-child { border-bottom: none; }
+    .okr-kr-num { flex-shrink: 0; width: 22px; height: 22px; background: var(--accent); color: #000; font-size: 11px; font-weight: 700; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+    .timeline-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin: 20px 0; }
+    .timeline-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; }
+    .timeline-q { font-size: 11px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: .6px; margin-bottom: 6px; }
+    .timeline-desc { font-size: 13px; color: var(--text-muted); }
+  </style>
+</head>
+<body>
+
+<nav id="main-nav" data-root=".."></nav>
+
+<main>
+  <div class="breadcrumb">
+    <a href="../index.html">🏠 Home</a>
+    <span class="breadcrumb-sep">/</span>
+    <span>🌍 Real Unknown</span>
+  </div>
+
+  <div class="section-header">
+    <span class="section-emoji">🌍</span>
+    <div>
+      <div class="section-title">Real Unknown</div>
+      <div class="section-subtitle">Stage 1 — The Why · OKRs, problem definitions, and core questions</div>
+    </div>
+  </div>
+
+  <div class="flex gap-2 wrap mb-4">
+    <span class="tag tag-blue">Stage 1</span>
+    <span class="tag tag-green">OKRs Defined</span>
+    <a href="../markdown_renderer.html?file=1_Real_Unknown/okr.md" class="tag tag-blue">📝 View Raw OKR</a>
+  </div>
+
+  <p style="color:var(--text-muted); margin-bottom:28px; max-width:680px;">
+    This stage captures the core problem we're solving and defines measurable success criteria via OKRs.
+    Everything in the journey maps back to these objectives.
+  </p>
+
+  <!-- OKRs -->
+  <div class="section-header">
+    <span class="section-emoji">🎯</span>
+    <div>
+      <div class="section-title">Objectives &amp; Key Results</div>
+    </div>
+  </div>
+
+  <div class="okr-block">
+    <div class="okr-objective">🎯 Objective 1: Master Local LLM Deployment with Ollama</div>
+    <ul class="okr-kr-list">
+      <li class="okr-kr-item"><span class="okr-kr-num">1</span><span>Successfully install and configure Ollama on all supported platforms (Linux, macOS, Windows)</span></li>
+      <li class="okr-kr-item"><span class="okr-kr-num">2</span><span>Deploy and run at least 3 different language models locally</span></li>
+      <li class="okr-kr-item"><span class="okr-kr-num">3</span><span>Achieve stable performance with minimum 8GB RAM utilization</span></li>
+    </ul>
+  </div>
+
+  <div class="okr-block">
+    <div class="okr-objective">🛠 Objective 2: Develop Practical Applications</div>
+    <ul class="okr-kr-list">
+      <li class="okr-kr-item"><span class="okr-kr-num">1</span><span>Create 5 working examples using Ollama's API</span></li>
+      <li class="okr-kr-item"><span class="okr-kr-num">2</span><span>Implement a custom model integration project</span></li>
+      <li class="okr-kr-item"><span class="okr-kr-num">3</span><span>Document all implementations with comprehensive guides</span></li>
+    </ul>
+  </div>
+
+  <div class="okr-block">
+    <div class="okr-objective">⚡ Objective 3: Optimize Performance &amp; Resource Usage</div>
+    <ul class="okr-kr-list">
+      <li class="okr-kr-item"><span class="okr-kr-num">1</span><span>Reduce model loading time by 25%</span></li>
+      <li class="okr-kr-item"><span class="okr-kr-num">2</span><span>Implement efficient memory management practices</span></li>
+      <li class="okr-kr-item"><span class="okr-kr-num">3</span><span>Achieve response times under 2 seconds for standard queries</span></li>
+    </ul>
+  </div>
+
+  <!-- Timeline -->
+  <div class="section-header mt-8">
+    <span class="section-emoji">📅</span>
+    <div><div class="section-title">Timeline</div></div>
+  </div>
+  <div class="timeline-grid">
+    <div class="timeline-item"><div class="timeline-q">Q1</div><div class="timeline-desc">Setup and basic implementation</div></div>
+    <div class="timeline-item"><div class="timeline-q">Q2</div><div class="timeline-desc">Application development</div></div>
+    <div class="timeline-item"><div class="timeline-q">Q3</div><div class="timeline-desc">Performance optimization</div></div>
+    <div class="timeline-item"><div class="timeline-q">Q4</div><div class="timeline-desc">Documentation and refinement</div></div>
+  </div>
+
+  <!-- Core Questions -->
+  <div class="section-header mt-8">
+    <span class="section-emoji">❓</span>
+    <div><div class="section-title">Core Questions</div><div class="section-subtitle">What we're trying to answer</div></div>
+  </div>
+  <div class="card-grid">
+    <div class="card"><div class="card-title">🔒 Why Local?</div><div class="card-desc">Why run LLMs locally instead of using cloud APIs? Privacy, cost, latency, and offline capability.</div></div>
+    <div class="card"><div class="card-title">🦙 Why Ollama?</div><div class="card-desc">What makes Ollama the right tool for local LLM deployment vs alternatives like LM Studio or llama.cpp?</div></div>
+    <div class="card"><div class="card-title">🗄️ Why Qdrant?</div><div class="card-desc">How does a local vector database complement Ollama for semantic search and knowledge retrieval?</div></div>
+    <div class="card"><div class="card-title">📊 What's the ROI?</div><div class="card-desc">How do we measure success? Response times, resource usage, model variety, and practical use cases built.</div></div>
+  </div>
+
+  <!-- Testing link -->
+  <div class="card mt-8" style="border-left:4px solid var(--green)">
+    <div class="flex items-center gap-3">
+      <span style="font-size:24px">🧪</span>
+      <div>
+        <div class="card-title">Testing Checklist</div>
+        <div class="card-desc">Validate that all objectives in this stage have been met.</div>
+      </div>
+      <a href="../markdown_renderer.html?file=1_Real_Unknown/testing_checklist.md" class="card-link" style="margin-left:auto">View Checklist →</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>Stage 1 — Real Unknown · <a href="../index.html">← Back to Home</a></p>
+</footer>
+
+<script src="../nav.js"></script>
+</body>
+</html>
